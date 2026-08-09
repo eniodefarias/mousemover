@@ -1,0 +1,10 @@
+{
+    "movement_plugin": "nudge_inteligente",
+    "interval_seconds": 30,
+    "jitter_min": 1,
+    "jitter_max": 10,
+    "watchdog_timeout": 3,
+    "mouse_hook": false,
+    "monitor_index": 0,
+    "log_level": "info"
+}

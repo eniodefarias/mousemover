@@ -1,0 +1,4 @@
+[state]
+monitor_index = 0
+plugin = nudge_inteligente
+mouse_hook = false
