@@ -17,6 +17,7 @@ class AppConfig:
     force: bool = False
     daemon: bool = False
     log_level: str = "info"
+    keep_awake: bool = False
 
 
 @dataclass
