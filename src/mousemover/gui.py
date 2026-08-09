@@ -61,6 +61,7 @@ class MouseMoverGUI(tk.Tk):
         self.jitter_max_var = tk.IntVar(value=self.config.jitter_max)
         self.watchdog_var = tk.DoubleVar(value=self.config.watchdog)
         self.mouse_hook_var = tk.BooleanVar(value=self.config.mouse_hook)
+        self.keep_awake_var = tk.BooleanVar(value=self.config.keep_awake)
         self.once_var = tk.BooleanVar(value=self.config.once)
         self.headless_var = tk.BooleanVar(value=self.config.headless)
         self.force_var = tk.BooleanVar(value=self.config.force)
@@ -94,10 +95,11 @@ class MouseMoverGUI(tk.Tk):
         flags = ttk.LabelFrame(main, text="Opções", padding=8)
         flags.pack(fill="x", pady=4)
         ttk.Checkbutton(flags, text="Sensor global de movimento do mouse", variable=self.mouse_hook_var).grid(row=0, column=0, sticky="w")
-        ttk.Checkbutton(flags, text="Executar apenas um ciclo (--once)", variable=self.once_var).grid(row=1, column=0, sticky="w")
-        ttk.Checkbutton(flags, text="Headless / sem console (--headless)", variable=self.headless_var).grid(row=2, column=0, sticky="w")
-        ttk.Checkbutton(flags, text="Ignorar INI/JSON (--force)", variable=self.force_var).grid(row=3, column=0, sticky="w")
-        ttk.Checkbutton(flags, text="Ocultar janela ao iniciar", variable=self.background_var).grid(row=4, column=0, sticky="w")
+        ttk.Checkbutton(flags,text="Manter tela/sistema ativos no Windows",variable=self.keep_awake_var).grid(row=1,column=0,sticky="w")
+        ttk.Checkbutton(flags, text="Executar apenas um ciclo (--once)", variable=self.once_var).grid(row=2, column=0, sticky="w")
+        ttk.Checkbutton(flags, text="Headless / sem console (--headless)", variable=self.headless_var).grid(row=3, column=0, sticky="w")
+        ttk.Checkbutton(flags, text="Ignorar INI/JSON (--force)", variable=self.force_var).grid(row=4, column=0, sticky="w")
+        ttk.Checkbutton(flags, text="Ocultar janela ao iniciar", variable=self.background_var).grid(row=5, column=0, sticky="w")
 
         ttk.Label(
             main,
@@ -157,6 +159,7 @@ class MouseMoverGUI(tk.Tk):
         self.config.jitter_max = int(self.jitter_max_var.get())
         self.config.watchdog = float(self.watchdog_var.get())
         self.config.mouse_hook = bool(self.mouse_hook_var.get())
+        self.config.keep_awake = bool(self.keep_awake_var.get())
         self.config.once = bool(self.once_var.get())
         self.config.headless = bool(self.headless_var.get())
         self.config.force = bool(self.force_var.get())
