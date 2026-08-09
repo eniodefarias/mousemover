@@ -1,7 +1,7 @@
 import threading
 import time
 import pyautogui
-
+from .power_manager import PowerManager
 from mousemover.models import AppConfig, MovementContext
 from .monitors import monitors, point_on_any_monitor
 from .plugin_loader import load_plugins
@@ -18,6 +18,7 @@ class Engine:
         self.running = False
         self._worker = None
         self.last_error = None
+        self.power_manager = PowerManager(logger)
         self._configure()
 
     def _configure(self):
@@ -151,6 +152,9 @@ class Engine:
         )
 
         try:
+            if self.config.keep_awake:
+                self.power_manager.enable()
+                
             cycles = 0
             while not self.hooks.kill_event.is_set():
                 reason = self._interrupt_reason()
@@ -190,6 +194,8 @@ class Engine:
                 if self.config.once and cycles >= 1:
                     self.logger.info("--once concluído.")
                     return "once"
+                
+                
 
             return "kill"
         except Exception as exc:
@@ -197,6 +203,7 @@ class Engine:
             self.logger.exception("Erro no engine: %s", exc)
             return "error"
         finally:
+            self.power_manager.disable()
             self.running = False
 
     def start_background(self, callback=None):
