@@ -6,5 +6,6 @@
     "watchdog_timeout": 3,
     "mouse_hook": false,
     "monitor_index": 0,
+    "keep_awake": false,
     "log_level": "info"
 }

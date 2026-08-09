@@ -62,6 +62,7 @@ def merged_config(cli_overrides: dict | None = None, force: bool = False) -> App
         "jitter_max": DEFAULTS.jitter_max,
         "watchdog": DEFAULTS.watchdog,
         "mouse_hook": DEFAULTS.mouse_hook,
+        "keep_awake": DEFAULTS.keep_awake,
         "once": DEFAULTS.once,
         "headless": DEFAULTS.headless,
         "force": force,
@@ -79,6 +80,7 @@ def merged_config(cli_overrides: dict | None = None, force: bool = False) -> App
             "jitter_max": "jitter_max",
             "watchdog_timeout": "watchdog",
             "mouse_hook": "mouse_hook",
+            "keep_awake": "keep_awake",
             "log_level": "log_level",
         }
         for src, dst in json_map.items():
