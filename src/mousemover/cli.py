@@ -27,6 +27,7 @@ def build_parser():
     p.add_argument("--jitter-min", type=int, help="Jitter mínimo em pixels.")
     p.add_argument("--jitter-max", type=int, help="Jitter máximo em pixels.")
     p.add_argument("--watchdog", type=float, help="Timeout do watchdog.")
+    p.add_argument("--keep-awake", action="store_true", default=None, help="Mantém tela e sistema ativos no Windows.")
     p.add_argument("--daemon", action="store_true", default=None, help="Executa sem menu.")
     p.add_argument("--headless", action="store_true", default=None, help="Não imprime logs no console.")
     p.add_argument("--once", action="store_true", default=None, help="Executa um ciclo.")
@@ -50,6 +51,7 @@ def _overrides(args):
         "headless": args.headless,
         "once": args.once,
         "log_level": args.log_level,
+        "keep_awake": args.keep_awake,
     }
 
 
